@@ -8,29 +8,29 @@
 \datedline{\biInfo{基于 Android 原生的 AI Agent 自动化执行环境}{Kotlin, Jetpack Compose, Shizuku, AIDL}}{独立开发}
 Github 链接：\href{https://github.com/tom-cat-mao/TaskWizard-Autoglm}{TaskWizard-Autoglm}
 \begin{itemize}
-  \item 重构 Open-AutoGLM 框架，将 PC 端 Python 逻辑完整移植为 Android 原生应用，实现**无需 ADB/PC 的端侧自动化 (On-Device Agent)**。
-  \item 基于 **Shizuku** 框架突破 Android 沙箱限制，通过 **AIDL** 实现特权服务 IPC 通信，获取截屏、模拟点击与 Shell 执行等系统级权限。
-  \item 开发自定义 **IME (Input Method Service)**，解决跨应用文本注入难题；构建全局悬浮窗系统，实现可视化推理过程与人机接管 (Human-in-the-loop)。
+  \item 重构 Open-AutoGLM 框架，将 PC 端 Python 逻辑完整移植为 Android 原生应用，实现无需 ADB/PC 的端侧自动化 (On-Device Agent)。
+  \item 基于 Shizuku框架突破 Android 沙箱限制，通过 AIDL实现特权服务 IPC 通信，获取截屏、模拟点击与 Shell 执行等系统级权限。
+  \item 开发自定义 IME (Input Method Service)，解决跨应用文本注入难题；构建全局悬浮窗系统，实现可视化推理过程与人机接管 (Human-in-the-loop)。
   \item 设计严谨的上下文管理策略 (Context Management)，在多轮对话中动态剥离视觉数据以优化 Token 消耗；实现基于协程的优雅任务调度与状态机管理。
   \item 集成 Retrofit 对接多模态大模型 API，结合系统元数据（当前应用包名、时间）与视觉截图构建多维 Prompt，提升模型决策准确率。
 \end{itemize}
 
 \datedline{\textbf{LLM-subtitle-translate 智能视频字幕系统}}{\dateRange{2026.01}{至今}}
 \datedline{\biInfo{基于 DAG 任务编排的全栈视频处理平台}{Go, React, OpenAI API, FFmpeg}}{独立开发}
-Github 链接：\href{https://github.com/tom-cat-mao/llm-convert-subtitle}{llm-convert-subtitle}
+Github 链接：\href{https://github.com/tom-cat-mao/LLM-subtitle-Generate}{LLM-subtitle-Generate}
 \begin{itemize}
-  \item 设计并实现基于 **DAG (有向无环图)** 的异步任务编排系统，能够自动化管理转录、翻译、对齐等长耗时 AI 任务依赖。
-  \item 深度集成 **OpenAI Whisper** 与 **AssemblyAI**，通过 Go 协程并发处理多媒体流，封装 **FFmpeg** 实现音频提取与波形数据生成。
-  \item 前端采用 **React + TypeScript** 构建专业级编辑器，利用 `react-virtuoso` 实现虚拟列表渲染，流畅编辑万行级字幕数据。
+  \item 设计并实现基于 DAG (有向无环图)的异步任务编排系统，能够自动化管理转录、翻译、对齐等长耗时 AI 任务依赖。
+  \item 深度集成 OpenAI Whisper与 AssemblyAI通过 Go 协程并发处理多媒体流，封装 FFmpeg实现音频提取与波形数据生成。
+  \item 前端采用 React + TypeScript构建专业级编辑器，利用 `react-virtuoso` 实现虚拟列表渲染，流畅编辑万行级字幕数据。
   \item 实现交互式可视化波形时间轴，支持毫秒级拖拽调整；支持 SRT/VTT/ASS 多格式互转与导出。
 \end{itemize}
 
 \datedline{\textbf{Greenlight 电影评价系统 API}}{\dateRange{2025.04}{2025.07}}
 \datedline{\biInfo{高并发生产级 RESTful API 后端服务}{Go, PostgreSQL, Redis, Docker}}{独立开发}
-Github 链接： \href{https://github.com/tom-cat-mao/greenlight}{greenlight}
+Github 链接： \href{https://github.com/tom-cat-mao/Golang-Greenlight-API}{greenlight}
 \begin{itemize}
-  \item 设计符合 JSON API 规范的 **RESTful** 接口，实现基于 **Token Bucket** 算法的分布式限流 (Rate Limiting) 中间件。
-  \item 引入 **Redis** 缓存层与数据库乐观锁机制 (Optimistic Concurrency Control)，有效解决高并发场景下的数据一致性问题。
+  \item 设计符合 JSON API 规范的 RESTful接口，实现基于 Token Bucket算法的分布式限流 (Rate Limiting) 中间件。
+  \item 引入 Redis缓存层与数据库乐观锁机制 (Optimistic Concurrency Control)，有效解决高并发场景下的数据一致性问题。
   \item 构建清晰的分层架构 (Layered Architecture)，实现基于 **JWT/PASETO** 的无状态认证体系，集成 SMTP 服务实现异步业务流程。
   \item 采用 `log/slog` 实现结构化日志追踪，结合 `expvar` 暴露运行时应用指标 (Metrics)；配置 Graceful Shutdown 保障服务高可用。
 \end{itemize}
