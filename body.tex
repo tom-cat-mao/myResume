@@ -1,0 +1,60 @@
+\logosection{\faGraduationCap}{教育经历}
+\datedline{\textbf{东北大学}}{\dateRange{2023.09}{至今}}
+计算机科学与工程学院 \quad 计算机科学与技术 \hfill 本科在读
+
+\logosection{\faWrench}{项目经历}
+
+\datedline{\textbf{LLM-subtitle-translate 智能视频字幕系统}}{\dateRange{2026.01}{至今}}
+\datedline{\biInfo{基于 LLM 的全栈视频字幕处理与翻译平台}{Go, React, TypeScript, OpenAI API, FFmpeg}}{独立开发}
+Github 链接：\href{https://github.com/tom-cat-mao/LLM-subtitle-Generate}{LLM-subtitle-Generate}
+\begin{itemize}
+  \item 设计并实现基于 DAG 的异步任务编排系统，管理视频转录、翻译、时间轴对齐等长耗时 AI 任务。
+  \item 集成 OpenAI Whisper 与 AssemblyAI，通过 Go 协程并发处理多媒体流，利用 FFmpeg 进行音频提取与波形生成。
+  \item 前端采用 React + TypeScript 构建专业级编辑器，使用 `react-virtuoso` 实现虚拟列表渲染，流畅处理万行级字幕数据。
+  \item 实现可视化波形时间轴，支持拖拽调整与实时预览；支持导出 SRT/VTT/ASS 等多种格式，实现 subtitle workflow 自动化。
+\end{itemize}
+
+\datedline{\textbf{Greenlight 电影评价系统 API}}{\dateRange{2025.04}{2025.07}}
+\datedline{\biInfo{高并发、生产级 RESTful API 后端服务}{Go, PostgreSQL, Redis, Docker}}{独立开发}
+Github 链接： \href{https://github.com/tom-cat-mao/Golang-Greenlight-API}{greenlight}
+\begin{itemize}
+  \item 设计符合 JSON API 规范的 RESTful接口，实现基于 Token Bucket算法的速率限制 (Rate Limiting)中间件，保障服务可用性。
+  \item 引入 Redis缓存层与乐观锁机制 (Optimistic Concurrency Control)，有效处理高并发下的数据竞争问题。
+  \item 构建分层架构 (Layered Architecture)，实现基于 JWT/PASETO 的多级权限认证体系，集成 SMTP 服务实现异步账户验证。
+  \item 采用 `log/slog` 实现结构化日志追踪，通过 `expvar` 暴露运行时指标；配置 Graceful Shutdown 机制，确保服务平滑升级。
+\end{itemize}
+
+\datedline{\textbf{Snippetbox 代码片段管理系统}}{\dateRange{2025.03}{2025.04}}
+\datedline{\biInfo{注重安全最佳实践的 Web 应用}{Go, MySQL, HTML Templating}}{独立开发}
+Github 链接：\href{hhttps://github.com/tom-cat-mao/Golang-web-application-snippetbox}{snippetbox}
+\begin{itemize}
+  \item 贯彻 Security-First开发理念，实现全站 HTTPS/TLS加密，配置 CSP、CSRF 防护及 Secure Cookie 策略。
+  \item 设计中间件链 (Middleware Chain) 处理恐慌恢复 (Panic Recovery) 与请求上下文管理；实现数据库连接池与事务管理。
+  \item 编写端到端 (E2E) 测试与 Mock 单元测试，确保核心业务逻辑的正确性与鲁棒性。
+\end{itemize}
+
+\datedline{\textbf{CS61B 数据结构与算法引擎}}{\dateRange{2024.07}{2024.11}}
+\datedline{\biInfo{加州大学伯克利分校 CS61B 课程项目}{Java}}{独立开发}
+\begin{itemize}
+  \item 实现包括红黑树、KD-Tree、哈希表在内的高级数据结构；基于 A* 算法构建伯克利地图寻路引擎 (Routing Engine)。
+  \item 深入理解 Git 原理，从零实现 Git 版本控制系统的核心功能 (gitlet)，包括 commit tree 构建、分支管理与 merge 冲突解决。
+\end{itemize}
+
+\logosection{\faCogs}{专业技能}
+
+\begin{itemize}[parsep=0.5ex]
+  \item \textbf{编程语言}: Go (熟练), Python, TypeScript/JavaScript, Java, C++, SQL
+  \item \textbf{后端技术}: Gin/Echo, gRPC, Redis, PostgreSQL, MySQL, Docker, Nginx, Linux (Arch)
+  \item \textbf{AI/Agent}: OpenAI API, LangChain 概念, Prompt Engineering, 任务编排与工具调用
+  \item \textbf{前端技术}: React, Tailwind CSS, HTML5/CSS3
+  \item \textbf{工具链}: Git, Make, Vim/Neovim, GitHub Actions
+\end{itemize}
+
+\logosection{\faInfo}{其他}
+
+\begin{itemize}[parsep=0.5ex]
+  \item \textbf{语言}: 英语 (IELTS 7.0) - 具备流畅的英文文档阅读与技术交流能力
+  \item \textbf{GitHub}: \href{https://github.com/tom-cat-mao}{github.com/tom-cat-mao}
+\end{itemize}
+
+%%%% 如果多页简历，可以手动在适当位置插入 \newpage 或者 \clearpage 开始新一页

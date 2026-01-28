@@ -1,0 +1,28 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+*.bbl
+*.blg
+*.lof
+*.lot
+
+# System files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor files
+*.swp
+*~
+.vscode/
+.idea/
+
+# PDF is a build artifact, but for a resume repo, you might want to version it.
+# Uncomment the next line to ignore the PDF.
+# *.pdf
