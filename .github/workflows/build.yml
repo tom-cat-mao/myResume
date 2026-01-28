@@ -1,0 +1,53 @@
+name: Build Resume
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume.tex
+          latexmk_use_xelatex: true
+          # 确保安装必要的包
+          extra_system_packages: "fontconfig"
+          # xu-cheng action 会自动处理 local fonts 如果在目录下，但显式指定更稳妥
+          # 注意：extra_fonts 参数可能需要具体路径或者 zip，这里我们依赖 setting.cls 的相对路径加载
+          # setting.cls 使用 Path = Font/，所以只要文件在工作区即可，不需要 extra_fonts 注入系统
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume
+          path: resume.pdf
+          retention-days: 7
+
+      - name: Generate Tag
+        id: tag
+        run: |
+          echo "tag_name=v$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
+
+      - name: Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: resume.pdf
+          tag_name: ${{ steps.tag.outputs.tag_name }}
+          name: Resume ${{ steps.tag.outputs.tag_name }}
+          body: "Auto-generated resume from commit ${{ github.sha }}"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

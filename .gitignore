@@ -23,6 +23,5 @@
 .vscode/
 .idea/
 
-# PDF is a build artifact, but for a resume repo, you might want to version it.
-# Uncomment the next line to ignore the PDF.
-# *.pdf
+# PDF is a build artifact
+*.pdf
