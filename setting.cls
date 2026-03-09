@@ -73,7 +73,7 @@ BoldFont=Pro_GB18030DemiBold.ttf,
 	bottom=1cm,
 	nohead
 ]{geometry}
-\renewcommand{\baselinestretch}{1.5} %定义行间距1.2
+\renewcommand{\baselinestretch}{1.35}
 
 \usepackage{titlesec}
 \usepackage{enumitem}
