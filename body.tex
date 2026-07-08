@@ -6,9 +6,9 @@
 \datedline{\textbf{字节跳动 \quad 测评 Agent 实习}}{\dateRange{2026.04}{至今}}
 \datedline{\biInfo{AI Agent / 评测基础设施}{}}{}
 \begin{itemize}
-  \item 负责评测 Agent 的上下文设计，含 Context Window 管理与知识召回，让长链路评测稳定拿到该看的信息。
-  \item 实现 Case Run 的 Skill，做多 Agent 协调控制，并用 Retry Round 多轮尝试直到跑通目标用例。
-  \item 在真实业务里积累了对 Agent 能力与大模型使用手感的判断，清楚什么交模型、什么用工程兜底。
+  \item 负责评测 Agent 的上下文设计，包括 Context Window 管理与知识召回，让长链路评测任务能稳定地拿到该看的信息。
+  \item 实现了 Case Run 环节的 Skill，负责多 Agent 之间的协调控制，并用 Retry Round 做多轮尝试，直到真正跑通目标用例。
+  \item 在真实业务里积累了不少对 Agent 能力和大模型实际使用手感的判断，知道什么该交给模型、什么该用工程兜底。
 \end{itemize}
 
 \logosection{\faWrench}{项目经历}
@@ -17,10 +17,10 @@
 \datedline{\biInfo{基于 ADB 的通用手机操控 Agent 框架}{Python, LangGraph, VLM, ADB}}{}
 GitHub：\href{https://github.com/tom-cat-mao/TaskWizard-Autoglm}{TaskWizard-Autoglm}
 \begin{itemize}
-  \item 吸收最新 Loop / Harness Engineering，重构成连上手机即可实时跟踪、查询任务的 Agent 框架，让任意 VLM 都能直接操控手机。
-  \item Harness 用 LangGraph 串起 plan → execute → reflect，感知信息工具化、模块化，重设 Context Window 并做步骤级短期记忆，让上下文更干净、状态感知更准。
-  \item 模型走中间层抽象执行、不直接吐命令；grounding 用控件树 + 代码避坐标，另接保底 grounding 模型兜住无控件树的情况。
-  \item 落 Loop Engineering 架构，每轮产出中间产物与真实状态，再用 Validator 做最终断言校验，把 phone agent 地基打实。
+  \item 基于最新 Loop / Harness Engineering 思路，重构成一个连上手机就能实时跟踪、查询任务的 Agent 框架，让任意带视觉能力的 VLM 都能直接操控手机。
+  \item Harness 用 LangGraph 串起 plan → execute → reflect 三步，并把感知信息工具化、模块化，重设了 Context Window、做了步骤级的短期记忆，让上下文更干净、模型对状态感知更准。
+  \item 模型不直接吐执行命令，而是走中间层把执行过程抽象掉；grounding 走控件树 + 代码实现，模型不输出坐标（坐标对模型又难又易错），另接一个保底 grounding 模型兜住拿不到控件树的情况。
+  \item 落了 Loop Engineering 架构，每轮都产出中间产物和真实运行状态，让模型能感知实际跑成什么样；再用 Validator 做最终断言校验，把 phone agent 的地基打实。
 \end{itemize}
 
 \logosection{\faCogs}{专业技能}
@@ -29,7 +29,7 @@ GitHub：\href{https://github.com/tom-cat-mao/TaskWizard-Autoglm}{TaskWizard-Aut
   \item \textbf{编程语言}: Python, Go ,C++
   \item \textbf{AI/Agent}: Agent Workflow (Loop/Harness Engineering), LangGraph, VLM/多模态交互, Context Engineering and Memory System
   \item \textbf{Android 端侧}: ADB, 控件树/Grounding
-  \item \textbf{后端/全栈}: Gin/Echo, PostgreSQL, Docker, React, Linux 
+  \item \textbf{后端/全栈}: Gin/Echo, PostgreSQL, Docker, React, Linux
   \item \textbf{工具链}: Git, GitHub Actions
 \end{itemize}
 
