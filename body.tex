@@ -13,22 +13,22 @@
 
 \logosection{\faWrench}{项目经历}
 
-\datedline{\textbf{TaskWizard (Open-AutoGLM)}}{\dateRange{2025.12}{至今}}
-\datedline{\biInfo{端侧 Agent 自动化执行环境}{Kotlin, Jetpack Compose, Shizuku, AIDL}}{}
+\datedline{\textbf{TaskWizard (Open-AutoGLM 重构)}}{\dateRange{2025.12}{至今}}
+\datedline{\biInfo{基于 ADB 的通用手机操控 Agent 框架}{Python, LangChain, VLM, ADB}}{}
 GitHub：\href{https://github.com/tom-cat-mao/TaskWizard-Autoglm}{TaskWizard-Autoglm}
 \begin{itemize}
-  \item 把 Open-AutoGLM 的 PC 流程搬到了 Android 上，做成不依赖 ADB/PC 的端侧 Agent。
-  \item 用 Shizuku + AIDL 搭了一条特权通道，让 Agent 能直接截屏、点屏、跑 Shell。
-  \item 自己写了个输入法和全局悬浮窗，解决跨 App 输入和接管的问题，不确定时就交还给人。
-  \item 用协程和状态机管上下文，把截图、包名、时间拼成多模态 Prompt 喂给模型。
+  \item 基于最新 Loop / Harness Engineering 思路，重构成一个连上手机就能实时跟踪、查询任务的 Agent 框架，让任意带视觉能力的 VLM 都能直接操控手机。
+  \item Harness 用 LangChain 串起 plan → execute → reflect 三步，并把感知信息工具化、模块化，重设了 Context Window、做了步骤级的短期记忆，让上下文更干净、模型对状态感知更准。
+  \item 模型不直接吐执行命令，而是走中间层把执行过程抽象掉；grounding 走控件树 + 代码实现，模型不输出坐标（坐标对模型又难又易错），另接一个保底 grounding 模型兜住拿不到控件树的情况。
+  \item 落了 Loop Engineering 架构，每轮都产出中间产物和真实运行状态，让模型能感知实际跑成什么样；再用 Validator 做最终断言校验，把 phone agent 的地基打实。
 \end{itemize}
 
 \logosection{\faCogs}{专业技能}
 
 \begin{itemize}[parsep=0.5ex]
-  \item \textbf{编程语言}: Kotlin, Go (熟练), Java, Python, TypeScript/JavaScript, SQL, C++
-  \item \textbf{Android开发}: Jetpack Compose, AIDL, Shizuku, Retrofit, Room, MVVM, Coroutines
-  \item \textbf{AI/Agent}: Prompt Engineering, Agent Workflow (ReAct/DAG), OpenAI API, 多模态交互设计
+  \item \textbf{编程语言}: Python, Go (熟练), Kotlin, Java, TypeScript/JavaScript, SQL, C++
+  \item \textbf{AI/Agent}: Agent Workflow (Loop/Harness Engineering), LangChain, VLM/多模态交互, Context Window 与记忆设计, Grounding 与 Validator, OpenAI API
+  \item \textbf{Android 端侧}: ADB, Jetpack Compose, AIDL, Shizuku, 控件树/Grounding
   \item \textbf{后端/全栈}: Gin/Echo, Redis, PostgreSQL, Docker, React, Linux (Arch)
   \item \textbf{工具链}: Git, Make, Vim/Neovim, GitHub Actions
 \end{itemize}
