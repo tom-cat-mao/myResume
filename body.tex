@@ -3,9 +3,12 @@
 计算机科学与工程学院 \quad 计算机科学与技术 \hfill 本科在读
 
 \logosection{\faBriefcase}{实习经历}
-\datedline{\textbf{字节跳动 \quad 测评 Agent 实习}}{\dateRange{2026.xx}{至今}}
+\datedline{\textbf{字节跳动 \quad 测评 Agent 实习}}{\dateRange{2026.04}{至今}}
+\datedline{\biInfo{AI Agent / 评测基础设施}{}}{}
 \begin{itemize}
-  \item （待补充：端到端测评 Agent，case 生成 → run → 评测报告闭环）
+  \item 负责评测 Agent 的上下文设计，包括 Context Window 管理与知识召回，让长链路评测任务能稳定地拿到该看的信息。
+  \item 实现了 Case Run 环节的 Skill，负责多 Agent 之间的协调控制，并用 Retry Round 做多轮尝试，直到真正跑通目标用例。
+  \item 在真实业务里积累了不少对 Agent 能力和大模型实际使用手感的判断，知道什么该交给模型、什么该用工程兜底。
 \end{itemize}
 
 \logosection{\faWrench}{项目经历}
