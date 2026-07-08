@@ -34,20 +34,50 @@ jobs:
           path: resume.pdf
           retention-days: 7
 
-      - name: Generate Tag
-        id: tag
+      - name: Verify PDF
         run: |
-          echo "tag_name=v$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
+          if [ ! -s resume.pdf ]; then
+            echo "Error: resume.pdf is missing or empty" >&2
+            exit 1
+          fi
+          echo "resume.pdf generated successfully ($(du -h resume.pdf | cut -f1))"
+
+      - name: Delete previous latest release
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = 'latest';
+            try {
+              await github.rest.repos.deleteRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: (await github.rest.repos.getReleaseByTag({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  tag: tag
+                })).data.id
+              });
+            } catch (e) { console.log('No existing latest release to delete'); }
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: 'tags/' + tag
+              });
+            } catch (e) { console.log('No existing latest tag to delete'); }
 
       - name: Release
         if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v1
         with:
           files: resume.pdf
-          tag_name: ${{ steps.tag.outputs.tag_name }}
-          name: Resume ${{ steps.tag.outputs.tag_name }}
+          tag_name: latest
+          name: Latest Resume
           body: "Auto-generated resume from commit ${{ github.sha }}"
           draft: false
           prerelease: false
+          make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
