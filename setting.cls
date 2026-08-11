@@ -122,7 +122,7 @@ BoldFont=Pro_GB18030DemiBold.ttf,
         \normalsize{
             \faPhone\ {#1} \quad 
             \faEnvelopeO\ \href{mailto:{#2}}{#2} \quad 
-            \faHome\  \href{#3}{#3}
+            \faGithub\  \href{#3}{#3}
         }
     }
     \vspace{0.7ex}
