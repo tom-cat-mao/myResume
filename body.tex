@@ -14,22 +14,23 @@
 
 \logosection{\faWrench}{项目经历}
 
-\datedline{\textbf{TaskWizard (Open-AutoGLM 重构)}}{\dateRange{2026.06}{至今}}
-\datedline{\biInfo{基于 ADB 的通用手机操控 Agent 框架}{Python, LangGraph, VLM, ADB}}{}
-GitHub：\href{https://github.com/tom-cat-mao/TaskWizard-Autoglm}{TaskWizard-Autoglm}
+\datedline{\textbf{TaskWizard（Open-AutoGLM 重构）}}{\dateRange{2026.06}{至今}}
+\datedline{\biInfo{基于 ADB 的通用手机操控 Agent 框架}{Python, LangChain, VLM, ADB, MLX}}{}
+GitHub：\href{https://github.com/tom-cat-mao/TaskWizard}{TaskWizard}（开源，附 MkDocs 文档站）
 \begin{itemize}
-  \item 基于 Loop / Harness Engineering 理念重构 Open-AutoGLM，打造即连即用的手机操控 Agent 框架，支持实时任务跟踪与查询，任意具备视觉能力的 VLM 均可接入并直接操控手机；支持 15 分钟以上超长任务的稳定执行，手机操控任务成功率由 20\% 提升至 90\%。
-  \item 基于 LangGraph 构建 plan → execute → reflect 的 Harness 流程，将感知信息工具化、模块化；重新设计 Context Window 并实现步骤级短期记忆，提升上下文质量与模型的状态感知准确度。
-  \item 设计中间抽象层隔离模型与执行细节：Grounding 以控件树解析为主、由代码完成坐标计算，避免模型直接输出坐标。
-  \item 将 LocateAnything 由规则式自动兜底重构为模型自主调用的工具：调用时由主模型注入目标元素的大致位置与语义描述，引导其完成精确框选与坐标输出，将控件树缺失场景下的框选成功率从 30\% 提升至 100\%。
-  \item 落地 Loop Engineering 架构，每轮迭代产出中间产物与真实运行状态，形成模型可感知的执行反馈闭环；引入 Validator 进行最终断言校验，保障 Phone Agent 的执行可靠性。
+  \item 基于 Loop/Harness Engineering 重构 Open-AutoGLM，即连即用、任意视觉 VLM 接入即可操控手机；支持 15 分钟以上超长任务稳定执行，手机操控任务成功率由 20\% 提升至 90\%。
+  \item 从 LangGraph 图编排演进为 thin-loop 架构：每步一次模型调用、一次工具执行，harness 只提供工具、安全边界、上下文卫生与可观测性，不替模型编排工作流；设计原子观测生命周期（单采样窗口 + epoch 批次徽章 + 过期 mark fail-closed），根除 marks 与截图错位的 TOCTOU 问题。
+  \item Marks-first grounding：坐标 0-1000 相对换算只在工具内部完成，模型不接触绝对像素；locate 视觉定位默认原图输入 + 提示词优先 + 可选区域裁剪（原分辨率裁剪与仿射回映射），控件树缺失场景框选成功率由 30\% 提升至 100\%。
+  \item 安全预警制：风险执行调用短路为“世界事实 + 选项空间”的预警回执，模型显式确认后才执行；finish 两段式确认 + 独立上下文验收器；token 预算 + 双阈值 auto-compact 保障长任务成本与上下文卫生。
+  \item 设计自积累记忆与自进化数据面：App-KB 设备事实库（事件日志 + 物化视图 + dream 整理 + 隐式纠正别名）；episode 经验档案（隐私白名单、observe-only）；sqlite-vec + 本地 MLX 嵌入的 RAG shadow 召回（自验证命中率，达标前不注入）；能力注册表让每个能力可关、可版本化、可回滚。
+  \item 工程配套：NiceGUI 实时控制台（步骤时间线、钉帧回看、记忆页、软停止、每轮配置覆盖），MkDocs 文档站经 GitHub Actions 自动部署。
 \end{itemize}
 
 \logosection{\faCogs}{专业技能}
 
 \begin{itemize}[parsep=0.5ex]
   \item \textbf{编程语言}: Python, Go, C++
-  \item \textbf{AI/Agent}: Agent Workflow (Loop/Harness Engineering), LangGraph, Multi-Agent, Context Engineering / Memory System, VLM/多模态交互
+  \item \textbf{AI/Agent}: Agent Workflow (Loop/Harness Engineering), 自进化与记忆系统 (Memory/RAG), LangChain/LangGraph, Multi-Agent, Context Engineering, VLM/多模态交互
   \item \textbf{Android 端侧}: ADB, 控件树/Grounding
   \item \textbf{工程与工具}: Docker, PostgreSQL, Linux, Git/GitHub Actions, Gin, React
   \item \textbf{语言}: 英语（IELTS 7.0）
