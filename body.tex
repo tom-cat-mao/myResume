@@ -19,16 +19,17 @@
 GitHub：\href{https://github.com/tom-cat-mao/TaskWizard}{TaskWizard}（开源，含 NiceGUI 实时控制台与 MkDocs 文档站）
 \begin{itemize}
   \item 基于 Loop/Harness Engineering 自 Open-AutoGLM 演进为 thin-loop 架构：每步一次模型调用、一次工具执行，harness 不做流程编排；任意视觉 VLM 接入即可操控手机，15 分钟以上超长任务成功率由 20\% 提升至 90\%；风险调用预警确认后才执行。
-  \item 三层记忆系统：App-KB 设备事实库（事件日志 + 物化视图 + dream 整理 + 隐式纠正别名）、episode 经验档案（隐私白名单、observe-only）、sqlite-vec + 本地 MLX 嵌入的 RAG shadow 召回（混合检索、自验证命中率，达标前不注入上下文）。
-  \item 自进化管线：离线蒸馏从 episode 证据生成候选经验，经隐私泄漏校验、Rule-of-3 与人工审批后晋升，支持撤销与版本链；全程不注入 actor 上下文——先记录、影子验证、达标才注入。
-  \item Context Management：截图滚动剪除（仅保留最新 2 张、折叠历史 marks），TaskDoc 任务板 pinned 压缩免疫；两级 auto-compact 结构化折叠，handoff 携带记忆与能力快照且不参与摘要；token 预算硬上限，计费不受压缩影响。
-  \item 按轮热更新：每轮运行携带显式快照（config fingerprint + memory generation + capability set），构建 agent 前校验，配置/记忆/能力变更下一轮即生效、无需重启；能力注册表按能力开关、快照可审计；控制台 runner 子进程化、重启回放重连。
+  \item 三层记忆系统：App-KB 设备事实库（事件日志 + dream 整理 + 隐式纠正别名）、episode 经验档案（隐私白名单、observe-only）、sqlite-vec + 本地 MLX 嵌入的 RAG shadow 召回（自验证命中率，达标前不注入）。
+  \item 自进化管线：离线蒸馏从 episode 证据生成候选经验，经隐私校验、Rule-of-3 与人工审批后晋升，支持撤销与版本链；全程不注入 actor 上下文——先记录、影子验证、达标才注入。
+  \item Context Management：截图滚动剪除旧图与历史 marks，TaskDoc 任务板 pinned 压缩免疫；两级 auto-compact 结构化折叠，handoff 携带记忆与能力快照且不参与摘要；token 预算硬上限，计费不受压缩影响。
+  \item 按轮热更新：每轮运行携带显式快照（config fingerprint + memory generation + capability set），配置/记忆/能力变更下一轮即生效、无需重启；能力注册表按能力开关；控制台 runner 子进程化、重启回放重连。
 \end{itemize}
 
 \logosection{\faCogs}{专业技能}
 
 \begin{itemize}[parsep=0.5ex]
-  \item \textbf{编程语言}: Python, Go, C++（英语：IELTS 7.0）
+  \item \textbf{编程语言}: Python, Go, C++
   \item \textbf{AI/Agent}: Agent Workflow (Loop/Harness Engineering), 自进化与记忆系统 (Memory/RAG), LangChain/LangGraph, Multi-Agent, Context Engineering, VLM/多模态交互
   \item \textbf{工程与工具}: Docker, PostgreSQL, Linux, Git/GitHub Actions, Gin, React, ADB, 控件树/Grounding
+  \item \textbf{语言}: 英语（IELTS 7.0）
 \end{itemize}
