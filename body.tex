@@ -14,14 +14,15 @@
 
 \logosection{\faWrench}{项目经历}
 
-\datedline{\textbf{TaskWizard（Open-AutoGLM 重构）}}{\dateRange{2026.06}{至今}}
-\datedline{\biInfo{基于 ADB 的通用手机操控 Agent 框架}{Python, LangChain, VLM, ADB, MLX}}{}
-GitHub：\href{https://github.com/tom-cat-mao/TaskWizard}{TaskWizard}（开源，含 NiceGUI 实时控制台与 MkDocs 文档站，GitHub Actions 自动部署）
+\datedline{\textbf{TaskWizard}}{\dateRange{2026.06}{至今}}
+\datedline{\biInfo{基于 ADB 的自进化手机操控 Agent 框架}{Python, LangChain, VLM, ADB, MLX}}{}
+GitHub：\href{https://github.com/tom-cat-mao/TaskWizard}{TaskWizard}（开源，含 NiceGUI 实时控制台与 MkDocs 文档站）
 \begin{itemize}
-  \item 基于 Loop/Harness Engineering 将 Open-AutoGLM 重构为 thin-loop 架构：每步一次模型调用、一次工具执行，harness 只提供工具、安全边界、上下文卫生与可观测性，不替模型编排工作流；即连即用、任意视觉 VLM 接入即可操控手机，15 分钟以上超长任务成功率由 20\% 提升至 90\%。
-  \item 原子观测 + marks-first grounding：单生产者采样窗口 + epoch 批次徽章，过期 mark 一律 fail-closed，根除截图与 marks 错位的 TOCTOU 问题；模型只接触 0-1000 相对坐标，locate 视觉定位默认原图输入、提示词优先、可选区域裁剪（原分辨率裁剪 + 仿射回映射），控件树缺失场景框选成功率由 30\% 提升至 100\%。
-  \item 安全预警制与成本控制：风险调用短路为“世界事实 + 选项空间”预警回执，模型显式确认后才执行；finish 两段式确认 + 独立上下文验收器；token 预算硬上限 + 两级 auto-compact 保障长任务上下文卫生。
-  \item 记忆与自进化数据面：App-KB 事实库（事件日志 + 物化视图 + dream 整理 + 隐式纠正别名）、episode 经验档案（隐私白名单、observe-only）、sqlite-vec + 本地 MLX 嵌入的 RAG shadow 召回（自验证命中率，达标前不注入）；能力注册表支持按能力开关与快照审计，离线蒸馏 + Rule-of-3 + 人工审批的经验晋升管线不注入 actor 上下文。
+  \item 基于 Loop/Harness Engineering 自 Open-AutoGLM 演进为 thin-loop 架构：每步一次模型调用、一次工具执行，harness 只提供工具、安全边界、上下文卫生与可观测性；即连即用、任意视觉 VLM 接入即可操控手机，15 分钟以上超长任务成功率由 20\% 提升至 90\%；风险调用短路为预警回执，模型显式确认后才执行。
+  \item 三层记忆系统：App-KB 设备事实库（事件日志 + 物化视图 + dream 整理 + 隐式纠正别名）、episode 经验档案（隐私白名单、observe-only）、sqlite-vec + 本地 MLX 嵌入的 RAG shadow 召回（向量 + 关键词 + 时间衰减混合打分，自验证命中率、达标前不注入上下文）。
+  \item 自进化管线：离线蒸馏从 episode 证据生成候选经验，经 schema 与隐私泄漏校验、Rule-of-3 验证、人工审批后方可晋升，支持撤销与版本链；全程不注入 actor 上下文——先记录、再影子验证、最后才改变模型行为。
+  \item Context Management：截图滚动剪除（仅保留最新 2 张、历史 marks 折叠，幂等保持前缀稳定），TaskDoc 任务板 pinned 压缩免疫；两级 auto-compact（0.75 提醒收敛 / 0.92 结构化折叠），handoff 携带记忆与能力快照且不参与摘要；token 预算硬上限，计费不受压缩影响。
+  \item 按轮热更新：每轮运行携带显式快照（config fingerprint + memory generation + capability set），构建 agent 前校验，新配置、新沉淀记忆与能力开关下一轮即生效、无需重启；能力注册表声明各能力档位与依赖、快照可审计；控制台独立 runner 子进程，重启后事件回放并重连存活任务。
 \end{itemize}
 
 \logosection{\faCogs}{专业技能}
