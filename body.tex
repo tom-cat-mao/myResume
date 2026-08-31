@@ -16,14 +16,12 @@
 
 \datedline{\textbf{TaskWizard（Open-AutoGLM 重构）}}{\dateRange{2026.06}{至今}}
 \datedline{\biInfo{基于 ADB 的通用手机操控 Agent 框架}{Python, LangChain, VLM, ADB, MLX}}{}
-GitHub：\href{https://github.com/tom-cat-mao/TaskWizard}{TaskWizard}（开源，附 MkDocs 文档站）
+GitHub：\href{https://github.com/tom-cat-mao/TaskWizard}{TaskWizard}（开源，含 NiceGUI 实时控制台与 MkDocs 文档站，GitHub Actions 自动部署）
 \begin{itemize}
-  \item 基于 Loop/Harness Engineering 重构 Open-AutoGLM，即连即用、任意视觉 VLM 接入即可操控手机；支持 15 分钟以上超长任务稳定执行，手机操控任务成功率由 20\% 提升至 90\%。
-  \item 从 LangGraph 图编排演进为 thin-loop 架构：每步一次模型调用、一次工具执行，harness 只提供工具、安全边界、上下文卫生与可观测性，不替模型编排工作流；设计原子观测生命周期（单采样窗口 + epoch 批次徽章 + 过期 mark fail-closed），根除 marks 与截图错位的 TOCTOU 问题。
-  \item Marks-first grounding：坐标 0-1000 相对换算只在工具内部完成，模型不接触绝对像素；locate 视觉定位默认原图输入 + 提示词优先 + 可选区域裁剪（原分辨率裁剪与仿射回映射），控件树缺失场景框选成功率由 30\% 提升至 100\%。
-  \item 安全预警制：风险执行调用短路为“世界事实 + 选项空间”的预警回执，模型显式确认后才执行；finish 两段式确认 + 独立上下文验收器；token 预算 + 双阈值 auto-compact 保障长任务成本与上下文卫生。
-  \item 设计自积累记忆与自进化数据面：App-KB 设备事实库（事件日志 + 物化视图 + dream 整理 + 隐式纠正别名）；episode 经验档案（隐私白名单、observe-only）；sqlite-vec + 本地 MLX 嵌入的 RAG shadow 召回（自验证命中率，达标前不注入）；能力注册表让每个能力可关、可版本化、可回滚。
-  \item 工程配套：NiceGUI 实时控制台（步骤时间线、钉帧回看、记忆页、软停止、每轮配置覆盖），MkDocs 文档站经 GitHub Actions 自动部署。
+  \item 基于 Loop/Harness Engineering 将 Open-AutoGLM 重构为 thin-loop 架构：每步一次模型调用、一次工具执行，harness 只提供工具、安全边界、上下文卫生与可观测性，不替模型编排工作流；即连即用、任意视觉 VLM 接入即可操控手机，15 分钟以上超长任务成功率由 20\% 提升至 90\%。
+  \item 原子观测 + marks-first grounding：单生产者采样窗口 + epoch 批次徽章，过期 mark 一律 fail-closed，根除截图与 marks 错位的 TOCTOU 问题；模型只接触 0-1000 相对坐标，locate 视觉定位默认原图输入、提示词优先、可选区域裁剪（原分辨率裁剪 + 仿射回映射），控件树缺失场景框选成功率由 30\% 提升至 100\%。
+  \item 安全预警制与成本控制：风险调用短路为“世界事实 + 选项空间”预警回执，模型显式确认后才执行；finish 两段式确认 + 独立上下文验收器；token 预算硬上限 + 两级 auto-compact 保障长任务上下文卫生。
+  \item 记忆与自进化数据面：App-KB 事实库（事件日志 + 物化视图 + dream 整理 + 隐式纠正别名）、episode 经验档案（隐私白名单、observe-only）、sqlite-vec + 本地 MLX 嵌入的 RAG shadow 召回（自验证命中率，达标前不注入）；能力注册表支持按能力开关与快照审计，离线蒸馏 + Rule-of-3 + 人工审批的经验晋升管线不注入 actor 上下文。
 \end{itemize}
 
 \logosection{\faCogs}{专业技能}
