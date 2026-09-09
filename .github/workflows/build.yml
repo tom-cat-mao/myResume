@@ -27,20 +27,38 @@ jobs:
           # 注意：extra_fonts 参数可能需要具体路径或者 zip，这里我们依赖 setting.cls 的相对路径加载
           # setting.cls 使用 Path = Font/，所以只要文件在工作区即可，不需要 extra_fonts 注入系统
 
-      - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: resume
-          path: resume.pdf
-          retention-days: 7
+      - name: Install PDF inspection tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
 
-      - name: Verify PDF
+      - name: Verify single-page PDF and render previews
         run: |
           if [ ! -s resume.pdf ]; then
             echo "Error: resume.pdf is missing or empty" >&2
             exit 1
           fi
-          echo "resume.pdf generated successfully ($(du -h resume.pdf | cut -f1))"
+          pdfinfo resume.pdf
+          pdftotext -layout resume.pdf resume.txt
+          pdftoppm -scale-to 1800 -png resume.pdf resume-preview
+          pages=$(pdfinfo resume.pdf | awk '/^Pages:/ {print $2}')
+          echo "Resume pages: $pages" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$pages" != "1" ]; then
+            echo "Error: expected a one-page resume, got $pages pages" >&2
+            exit 1
+          fi
+
+      - name: Upload PDF and preview artifacts
+        if: always() && hashFiles('resume.pdf') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume
+          path: |
+            resume.pdf
+            resume-preview-*.png
+            resume.txt
+            resume.log
+          retention-days: 7
 
       - name: Delete previous latest release
         if: github.ref == 'refs/heads/main'
