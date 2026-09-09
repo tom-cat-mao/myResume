@@ -3,7 +3,7 @@
 计算机科学与工程学院 \quad 计算机科学与技术 \hfill 本科在读
 
 \logosection{\faBriefcase}{实习经历}
-\datedline{\textbf{字节跳动 \quad 测试 Agent 后端开发实习生}}{\dateRange{2026.04}{至今}}
+\datedline{\textbf{字节跳动 \quad 测试 Agent 后端开发实习生}}{2026.04 -- 至今}
 Global Monetization · Platform Quality · Creative and Ecosystem
 \begin{itemize}
   \item 参与前端自测 Agent 后端研发，通过 A2A（Agent-to-Agent）协议向业务团队提供测试能力，覆盖测试用例生成、执行与断言链路。
@@ -12,12 +12,12 @@ Global Monetization · Platform Quality · Creative and Ecosystem
 \end{itemize}
 
 \logosection{\faWrench}{项目经历}
-\datedline{\textbf{TaskWizard \quad Android GUI Agent 框架}}{\dateRange{2026.06}{至今}}
+\datedline{\textbf{TaskWizard \quad Android GUI Agent 框架}}{2026.06 -- 至今}
 \datedline{个人开源项目 \quad Python / LangChain / ADB / MLX}{\href{https://github.com/tom-cat-mao/TaskWizard}{GitHub: TaskWizard}}
 \begin{itemize}
   \item \textbf{架构重构：}将 Open-AutoGLM 演进为 LLM 驱动的 thin-loop，以模型自主选择工具替代固定节点编排，运行时负责执行、上下文与风险预警；实机测试中，15 分钟以上任务成功率由 20\% 提升至 90\%。
   \item \textbf{插件化运行时：}通过能力注册表与事件总线组合安全、预算、记忆等模块，支持工具替换、模型 Provider 与 API Builder 扩展，以及执行、摘要、验收等角色的模型配置。
-  \item \textbf{多模态定位：}结合截图与 Accessibility Tree，以带批次标识的 marks 绑定目标、拒绝过期寻址；将 LocateAnything 工具化，支持容器/锚点裁剪及坐标回映射，覆盖控件缺失与定位歧义场景。
+  \item \textbf{多模态定位：}结合截图与 Accessibility Tree，以带批次标识的 marks 绑定目标、拒绝过期寻址；将 \mbox{LocateAnything} 工具化，支持容器/锚点裁剪及坐标回映射，覆盖控件缺失与定位歧义场景。
   \item \textbf{长任务上下文：}实现截图滚动剪除、历史 marks 折叠与 TaskDoc 任务板固定保留；通过两阈值自动压缩生成交接摘要，保留工具调用/回执配对，并跨压缩累计各角色 token 用量。
   \item \textbf{经验迭代：}构建 App-KB 别名库与 episode 经验档案，基于 sqlite-vec/FTS5 和本地 MLX 嵌入召回；离线蒸馏规则与过程卡，经模型复核分级后受控回注，支持影子评估、版本追踪和撤销。
   \item \textbf{运行与诊断：}执行引擎采用独立 runner 子进程，与 NiceGUI 控制台通过文件 IPC 解耦；支持任务重连、事件回放、截图/工具回执诊断与脱敏 trace，便于复盘模型决策和执行问题。
