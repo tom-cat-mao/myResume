@@ -6,8 +6,8 @@ College of Computer Science and Engineering \quad Computer Science and Technolog
 \datedline{\textbf{ByteDance \quad Agent Development Intern}}{Apr 2026 -- Present}
 Global Monetization · Platform Quality · Creative and Ecosystem
 \begin{itemize}
-  \item Built backend services for a front-end self-testing agent, exposing automated testing capabilities to business teams via the A2A (Agent-to-Agent) protocol across the full case-generation, execution, and assertion pipeline.
-  \item Owned context engineering for the evaluation agent, architecting context-window management and knowledge-recall strategies that keep task information and execution context intact across long-horizon evaluation runs.
+  \item Built backend services for a front-end self-testing agent, delivering automated testing to business teams via the A2A (Agent-to-Agent) protocol across case generation, execution, and assertion.
+  \item Owned context engineering for the evaluation agent, architecting context-window management and knowledge recall to keep task information and execution context intact across long-horizon runs.
   \item Implemented the core Case Run skill with multi-agent orchestration, introducing Retry Round retries that raised evaluation case success rate from 10\% to 60\%.
 \end{itemize}
 
@@ -15,12 +15,12 @@ Global Monetization · Platform Quality · Creative and Ecosystem
 \datedline{\textbf{TaskWizard \quad Android GUI Agent Framework}}{Jun 2026 -- Present}
 \datedline{Personal open-source project \quad Python / LangChain / ADB / MLX}{\href{https://github.com/tom-cat-mao/TaskWizard}{GitHub: TaskWizard}}
 \begin{itemize}
-  \item \textbf{Architecture Refactor:} Evolved Open-AutoGLM into an LLM-driven thin loop, replacing fixed node orchestration with model-selected tools while the runtime owns execution, context, and risk alerting; on-device tests raised the success rate on 15+ minute tasks from 20\% to 90\%.
-  \item \textbf{Pluggable Runtime:} Composed safety, budget, and memory modules through a capability registry and event bus, enabling tool replacement, model Provider and API Builder extensions, and per-role model configuration for execution, summarization, and acceptance.
-  \item \textbf{Multimodal Grounding:} Fused screenshots with the Accessibility Tree, validating the freshness of marks via batch identifiers; wrapped \mbox{LocateAnything} as a visual grounding tool with container/anchor cropping and coordinate remapping, covering missing-widget and ambiguous-grounding cases.
-  \item \textbf{Long-Horizon Context:} Implemented scroll-based screenshot eviction and historical mark folding while pinning the TaskDoc task board; two-threshold auto-compaction generates handoff summaries that preserve tool-call/receipt pairs and accumulate per-role token usage across compactions.
-  \item \textbf{Experience Iteration:} Built the App-KB alias library and episode experience archive with recall over sqlite-vec/FTS5 and local MLX embeddings; distilled rules and process cards offline, reinjecting them under control after model review and grading, with shadow evaluation, version tracking, and rollback.
-  \item \textbf{Runtime \& Diagnostics:} Isolated the execution engine in a standalone runner subprocess, decoupled from the NiceGUI console via file IPC; supports task reconnection, event replay, screenshot/tool-receipt diagnostics, and redacted traces for post-mortem review of model decisions and execution issues.
+  \item \textbf{Architecture Refactor:} Evolved Open-AutoGLM into an LLM-driven thin loop, replacing fixed node orchestration with model-selected tools while the runtime owns execution, context, and risk alerts; on-device success on 15+ minute tasks rose from 20\% to 90\%.
+  \item \textbf{Pluggable Runtime:} Composed safety, budget, and memory modules through a capability registry and event bus, enabling tool swaps, model Provider/API Builder extensions, and per-role model configuration for execution, summarization, and acceptance.
+  \item \textbf{Multimodal Grounding:} Fused screenshots with the Accessibility Tree, validating mark freshness via batch identifiers; wrapped \mbox{LocateAnything} as a visual grounding tool with container/anchor cropping and coordinate remapping, covering missing-widget and ambiguous-grounding cases.
+  \item \textbf{Long-Horizon Context:} Implemented scroll-based screenshot eviction and mark folding with the TaskDoc task board pinned; two-threshold auto-compaction generates handoff summaries, preserves tool-call/receipt pairs, and accumulates per-role token usage across compactions.
+  \item \textbf{Experience Iteration:} Built the App-KB alias library and episode archive with recall over sqlite-vec/FTS5 and local MLX embeddings; offline-distilled rules and process cards are model-reviewed, graded, and reinjected under control, with shadow evaluation, versioning, and rollback.
+  \item \textbf{Runtime \& Diagnostics:} Isolated the execution engine in a standalone runner subprocess, decoupled from the NiceGUI console via file IPC; supports task reconnection, event replay, tool-receipt diagnostics, and redacted traces for post-mortem review.
 \end{itemize}
 
 \logosection{\faCogs}{Skills}
