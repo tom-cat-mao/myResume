@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Compile Chinese resume
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume.tex
+          latexmk_use_xelatex: true
+          extra_system_packages: "fontconfig"
+
+      - name: Compile English resume
+        if: hashFiles('resume-en.tex') != ''
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume-en.tex
+          latexmk_use_xelatex: true
+          extra_system_packages: "fontconfig"
+
+      - name: Install PDF inspection tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Verify single-page PDFs
+        run: |
+          for f in resume resume-en; do
+            [ -s "$f.pdf" ] || continue
+            pages=$(pdfinfo "$f.pdf" | awk '/^Pages:/ {print $2}')
+            echo "$f pages: $pages"
+            if [ "$pages" != "1" ]; then
+              echo "Error: expected a one-page $f.pdf, got $pages pages" >&2
+              exit 1
+            fi
+          done
+
+      - name: Create versioned release
+        if: github.ref_type == 'tag'
+        run: |
+          files="resume.pdf"
+          if [ -s resume-en.pdf ]; then files="$files resume-en.pdf"; fi
+          gh release create "$GITHUB_REF_NAME" $files \
+            --title "Release $GITHUB_REF_NAME" \
+            --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
